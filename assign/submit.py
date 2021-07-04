@@ -21,25 +21,20 @@ PATH = "C:\chromedriver.exe"
 #driver = webdriver.Chrome(chrome_options=chrome_options)
 driver = webdriver.Chrome(PATH)
 
-i_course_name = argList[1]
-i_assign = argList[2]
+i_course_name = argList[1].replace("~"," ")
+i_assign = argList[2].replace("~"," ")
 i_email = argList[3]
 i_password = argList[4]
 i_git_url = argList[5]
-i_userid = argList[6]
+
+
+global OUT
+OUT = ""
 
 def Assign_my_code(gitHub,IDs):
     try:
         git_address = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "githubUrl")))
         git_address.send_keys(gitHub)
-        if(len(IDs)==2):
-            col1 = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "collab1")))
-            col1.send_keys(IDs[0])
-            col2 = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "collab2")))
-            col2.send_keys(IDs[1])
-        if(len(IDs)==1):
-            col1 = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "collab1")))
-            col1.send_keys(IDs[0])
         x = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "saveGrade")))
         x.send_keys(Keys.RETURN)
 
@@ -50,17 +45,19 @@ def Assign_my_code(gitHub,IDs):
         return text
 
     except:
-        OUT += "submission faild"
+        global OUT
+        OUT += " submission faild"
         return "0"
 
 def findAssingment(Assingment_name,gitHub,IDs):
-    a = 0
+
     try:
          text = "//*[contains(text(), '"+Assingment_name+"')]"
          x = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, text)))
          x.click()
     except:
-        # print("assigmnet was not found")
+         global OUT
+         OUT = "assignment was not found"
          return "0"
 
     try:
@@ -68,10 +65,11 @@ def findAssingment(Assingment_name,gitHub,IDs):
         text = "//button[@class='collapsible active' ]/../div/div/button"
         btn = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, text)))
         btn.send_keys(Keys.RETURN)
-        submission_ressult = Assign_my_code(gitHub,IDs)
-        return submission_ressult
+        submission_result = Assign_my_code(gitHub,IDs)
+        return submission_result
     except:
-        OUT += "error : cant submit the assign"
+        global OUT
+        OUT = OUT + "error : cant submit the assign"
         return "0"
 
 
@@ -80,17 +78,14 @@ def register_for_course(Course_name):
         text = 'Public'
         btn = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT , text)))
         btn.click()
+        text = "//*[contains(text(), '"+Course_name+"')]"
+        btn = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH , text)))
+        btn.click()
     except:
-        OUT += "login failed"
+        global OUT
+        OUT = OUT + "invalid assignment "
         return "0"
-        # driver.close()
-        #os.kill(pid, signal.SIGTERM) #or signal.SIGKILL
-        #exit(1)
 
-
-    text = "//*[contains(text(), '"+Course_name+"')]"
-    btn = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH , text)))
-    btn.click()
 
 def emailAndPass():
     try:
@@ -101,40 +96,40 @@ def emailAndPass():
         btn = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID , "btnLogin")))
         btn.send_keys(Keys.RETURN)
         driver.implicitly_wait(9)
-        return "1"
-    except:
+        try:
+                 text = "//a[contains(@href, '#mycourses')]"
+                 x = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, text)))
+        except:
+            global OUT
             OUT += "Email or password invalid"
             return "0"
+        return "1"
+    except:
+        return "0"
 
 
 
 driver.get(weburl)
 ans = emailAndPass()
-        
-      #  driver.close()
-        #os.kill(pid, signal.SIGTERM) #or signal.SIGKILL
-        #exit(1)
-OUT = ""
-Assingment_name = i_assign
-Course_name = i_course_name
-gitHub = i_git_url
-IDs = [0 , 0]
-IDs[0] = i_userid
-# if(len(argList)==8):
-#   IDs[1] = argList[7]
-ans = findAssingment(Assingment_name,gitHub,IDs)
-if(ans=="0"):
-   register_for_course(Course_name)
-   ans = findAssingment(Assingment_name,gitHub,IDs)
-if(ans=="0"):
-    OUT += "submition faild !"
-    ans = ""
+if(ans == "0"):
+    print(OUT)
+    driver.close()
+    driver.quit()
+else:
+    Assingment_name = i_assign
+    Course_name = i_course_name
+    gitHub = i_git_url
+    IDs = [0]
+    ans = findAssingment(Assingment_name,gitHub,IDs)
+    if(ans=="0"):
+       register_for_course(Course_name)
+       ans = findAssingment(Assingment_name,gitHub,IDs)
+    if(ans=="0"):
+        OUT += " submition faild !"
+        ans = ""
 
-OUT += ans
-print(OUT)
+    OUT += ans
+    print(OUT)
+    driver.close()
+    driver.quit()
 
-driver.close()
-driver.quit()
-#pattern = "Grade:"
-#index = ans.index(pattern)+7
-#print(ans[index:index+5])

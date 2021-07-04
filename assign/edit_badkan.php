@@ -40,10 +40,16 @@ else if ($fromform = $mform->get_data()) {
     $recordtoinsert->assignment = $assignment;
     $recordtoinsert->course_name = $course_name;
     $DB->insert_record('details_to_badkan', $recordtoinsert);
-    print("here first");
+
 
     //use python file  to submit
-    $python_data = "$course_name $assignment $fromform->user_email $fromform->user_password $fromform->git_url $USER->id" ;
+    //we have a bug here - the details sent wrong becouse of the spases between words - need fix
+    $course_name1 = str_replace(" " , "~" ,$course_name);
+    $assignment1 = str_replace(" " , "~" ,$assignment);
+    $python_data = "$course_name1 $assignment1 $fromform->user_email $fromform->user_password $fromform->git_url $USER->id" ;
+
+    //important note for users - exchange this path with the path to your python interpreter
+    // and your path to the submit.py file to where its exist/saved in your own compute/system.
     $python_path = 'C:/Users/Yair/anaconda3/python.exe C:\Users\Yair\moodle\server\moodle\mod\assign\submit.py ';
 
 
@@ -51,17 +57,22 @@ else if ($fromform = $mform->get_data()) {
     exec("kill -9 $pid") ;
 
     //extract the grade from the feedback
-    $grade = 0;
-//    $result_text  = implode(" ",$python_result); //make a one string of the python result
-//    $str = substr($python_result ,strpos($python_result,'Your grade is')); //substring to find the grade int the text
-//    preg_match('!\d+!', $str, $matches); //look for the value of the grade
-//    $grade = (double)(implode(" ",$matches));//extract the value
+     $grade = 0;
+     $result_text  = implode("\n",$python_result); //make a one string of the python result
+     $str = substr($result_text ,strpos($result_text,'Your grade is')); //substring to find the grade int the text
+     $found = preg_match('!\d+!', $str, $matches); //look for the value of the grade
+     $grade = (double)(implode(" ",$matches));//extract the value
+     if($found == 0){
+         $str2 = substr($result_text ,strpos($result_text,'Grade')); //substring to find the grade int the text
+         $found2 = preg_match('!\d+!', $str2, $matches2); //look for the value of the grade
+         $grade = (double)(implode(" ",$matches2));//extract the value
+     }
 
 
     // Insert the user ans submission data into our database table.
-    $grade = 10;
+
     $recordtoinsert2 = new stdClass();
-    $recordtoinsert2->feedback = $python_result[0];//"whatwhat";//$python_result;
+    $recordtoinsert2->feedback = $result_text;
     $recordtoinsert2->userid = $USER->id;
     $recordtoinsert2->grade = $grade;
     $DB->insert_record('badkan_feedback', $recordtoinsert2);
