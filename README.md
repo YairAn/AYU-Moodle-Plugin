@@ -42,7 +42,12 @@ now,you need to make a litte changes on the code
    - badkan assignment name
   those fields are coresponding to the course and assignment names as they called on the "bad-kan".
   
-
+  when submiting an assignment there are four fields need to be fields for 
+  the plugin to work with the "bad-kan":
+   - Github url - the github url where the submiting code is at.
+   - Email - the email that the user registerd to the "bad-kan" with.
+   - Password - the Password that the user registerd to the "bad-kan" with.
+   -  Assignment name -the name of the current moodle assignment (as its called on moodle *not* as it called on the "bad-kan") 
 
 
    
