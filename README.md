@@ -34,7 +34,11 @@ Afterwards , change the code as follows
  - In the installed moodle on your device go to : \server\moodle\mod\assign\submit.py
    - In line 18 change and fill the right fields:
    > PATH = "*the_path_to_your_chorme_driver*\chromedriver.exe"
+
+ - In the installed moodle on your device go to : \server\moodle\course\modedit.php
+   - replace the existing modedit.php file with the modedit.php file that in this repository.
    
+
 ## Usage
   ### When editing(creating) a new assignmet on some course there are two fields need to be filled for the plugin to work with the "Badkan":
    - badkan course name.
