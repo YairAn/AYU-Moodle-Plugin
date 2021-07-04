@@ -36,13 +36,13 @@ now,you need to make a litte changes on the code
    > PATH = "*the_path_to_your_chorme_driver*\chromedriver.exe"
    
 ## usage
-  when editing(creating) a new assignmet on some course there are two fields need to be fields for 
+  when editing(creating) a new assignmet on some course there are two fields need to be filled for 
   the plugin to work with the "bad-kan":
    - badkan course name
    - badkan assignment name
   those fields are coresponding to the course and assignment names as they called on the "bad-kan".
   
-  when submiting an assignment there are four fields need to be fields for 
+  when submiting an assignment there are four fields need to be filled for 
   the plugin to work with the "bad-kan":
    - Github url - the github url where the submiting code is at.
    - Email - the email that the user registerd to the "bad-kan" with.
