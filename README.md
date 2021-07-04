@@ -19,7 +19,7 @@ The plugin will enable Moodle academic users to submit an assignments with an au
 now,once you have all that ready do the following:
  
  - on the moodle home page go to "Site administration" -> "Plugins" -> "Install plugins"
-   and drag the "assing" zip folder (yes,the one you compress in the previous step) to the file picker or click "Choose a file".
+   and drag the "assing" zip folder ( the one you compress in the previous step) to the file picker or click "Choose a file".
    Continue according to the instructions given there.
    
  - you may ran into a problem in that procces because of a version conflict.
