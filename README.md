@@ -59,6 +59,17 @@ Afterwards , change the code as follows
 <img width="500" height="300" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s2.png">
 <img width="500" height="300" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s3.png">
 
+
+## tables:
+in our project we used few of the exsisting sql tables of the plugin:
+- assign
+- assign_grades
+
+in addition we add some of ourself:
+- badkan_course
+- badkan_feedback
+- details_to_badkan
+
    
    
  
