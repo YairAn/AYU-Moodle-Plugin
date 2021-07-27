@@ -50,13 +50,12 @@ def Assign_my_code(gitHub,IDs):
         return "0"
 
 def findAssingment(Assingment_name,gitHub,IDs):
-
+    global OUT
     try:
          text = "//*[contains(text(), '"+Assingment_name+"')]"
          x = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, text)))
          x.click()
     except:
-         global OUT
          OUT = "assignment was not found"
          return "0"
 
@@ -68,12 +67,12 @@ def findAssingment(Assingment_name,gitHub,IDs):
         submission_result = Assign_my_code(gitHub,IDs)
         return submission_result
     except:
-        global OUT
         OUT = OUT + "error : cant submit the assign"
         return "0"
 
 
 def register_for_course(Course_name):
+    global OUT
     try:
         text = 'Public'
         btn = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT , text)))
@@ -82,12 +81,12 @@ def register_for_course(Course_name):
         btn = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH , text)))
         btn.click()
     except:
-        global OUT
         OUT = OUT + "invalid assignment "
         return "0"
 
 
 def emailAndPass():
+    global OUT
     try:
         email = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME , "email")))
         passw = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME , "password")))
@@ -100,7 +99,6 @@ def emailAndPass():
                  text = "//a[contains(@href, '#mycourses')]"
                  x = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, text)))
         except:
-            global OUT
             OUT += "Email or password invalid"
             return "0"
         return "1"
