@@ -61,12 +61,12 @@ Afterwards , change the code as follows
 
 
 ## tables:
-in our project we used few of the exsisting sql tables of the plugin:
+In our project we used few of the exsisting sql tables of the plugin:
 - assign
 - assign_grades
 - grade_items
 
-in addition we add some of ourself:
+In addition we add some of ourself:
 - badkan_course
 - badkan_feedback
 - details_to_badkan
