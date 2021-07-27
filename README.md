@@ -7,11 +7,11 @@ The plugin will enable Moodle academic users to submit an assignments with an au
 ## Installation guide
 
 ## Prerquisites
-- First make sure that you have the Moodle system (a stable version) installed on your divice (either on your system or as local host).
+- First make sure that you have the Moodle system (a stable version) 3.11.1 or higher installed on your divice (either on your system or as local host).
   You can find instructions here: https://docs.moodle.org/311/en/Installing_Moodle
-- Make sure that you have python installed on your divice.
+- Make sure that you have python(3.8) installed on your divice.
 - Chrome browser.
-- Chrome driver , you can download it here https://chromedriver.chromium.org/downloads
+- Chrome driver ,(a stable version 9.0 and higher) you can download it here https://chromedriver.chromium.org/downloads
 - Clone or download this repository to your divice.
 - Compress the "assign" folder to a zip file (it will be in the folder you downloaded from this repository).
 
@@ -32,7 +32,12 @@ Afterwards , change the code as follows
     > $python_path = '*path_to_your_python*/python.exe     *the_path_to_the_server_folder*\server\moodle\mod\assign\submit.py ';
      
  - In the installed moodle on your device go to : \server\moodle\mod\assign\submit.py
-   - In line 18 change and fill the right fields:
+
+- In line 17 change and fill the right fields:
+   > weburl  = "*The current link to the Badkan"
+
+
+- In line 18 change and fill the right fields:
    > PATH = "*the_path_to_your_chorme_driver*\chromedriver.exe"
 
  - In the installed moodle on your device go to : \server\moodle\course\modedit.php
