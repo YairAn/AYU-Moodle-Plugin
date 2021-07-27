@@ -48,7 +48,7 @@ Afterwards , change the code as follows
   ### When editing(creating) a new assignmet on some course there are two fields need to be filled for the plugin to work with the "Badkan":
    - badkan course name.
    - badkan assignment name.
-  <img width="350" height="200" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s1.png"> 
+  <img width="500" height="300" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s1.png"> 
   Those fields are coresponding to the course and assignment names as they called on the "Badkan".
   
   ### when submiting an assignment there are four fields need to be filled for the plugin to work with the "bad-kan":
@@ -56,8 +56,8 @@ Afterwards , change the code as follows
    - Email - The email that the user registerd to the "bad-kan" with.
    - Password - The Password that the user registerd to the "bad-kan" with.
    -  Assignment name -The name of the current moodle assignment (as its called on moodle *not* as it called on the "bad-kan") 
-<img width="350" height="200" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s2.png">
-<img width="350" height="200" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s3.png">
+<img width="500" height="300" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s2.png">
+<img width="500" height="300" src="https://github.com/YairAn/AYU-Moodle-Plugin/blob/main/images/s3.png">
 
    
    
