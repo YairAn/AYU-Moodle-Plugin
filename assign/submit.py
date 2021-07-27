@@ -32,6 +32,7 @@ global OUT
 OUT = ""
 
 def Assign_my_code(gitHub,IDs):
+    global OUT
     try:
         git_address = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "githubUrl")))
         git_address.send_keys(gitHub)
@@ -45,7 +46,6 @@ def Assign_my_code(gitHub,IDs):
         return text
 
     except:
-        global OUT
         OUT += " submission faild"
         return "0"
 
